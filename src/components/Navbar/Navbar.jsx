@@ -1,126 +1,87 @@
-import React from "react";
-import Logo from "../../assets/Logo.png";
+import React, { useState } from "react";
+import "./Navbar.css";
+import Logo from "../../assets/Logo.png"; // Asegúrate de tener esta imagen
 
 const navbarlinks = [
     { id: 1, title: "Inicio", link: "/" },
-    { id: 2, title: "Sobre mi", link: "/" },
+    { id: 2, title: "Nosotros", link: "/" },
     { id: 3, title: "Contacto", link: "/" },
     { id: 4, title: "Soporte", link: "/" },
 ];
 
 const navbarRedes = [
-    { id: 1, title: "GitHub", link: "/", icon: 'bi bi-github' },
-    { id: 2, title: "LinkedIn", link: "/", icon: 'bi bi-linkedin'},
-    { id: 3, title: "Instagram", link: "/", icon: 'bi bi-instagram'},
+    { id: 1, title: "Instagram", link: "/", icon: 'bi bi-instagram' },
+    { id: 2, title: "TikTok", link: "/", icon: 'bi bi-tiktok'},
 ];
 
-// Estilos en línea que no dependen de Tailwind
-const styles = {
-  navbar: {
-    backgroundColor: '#1F2937',
-    color: 'white',
-    padding: '0.75rem 1rem'
-  },
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    maxWidth: '1200px',
-    margin: '0 auto'
-  },
-  logo: {
-    width: '100px'
-  },
-  navLinks: {
-    display: 'flex'
-  },
-  navLink: {
-    color: 'white',
-    padding: '0 1rem',
-    textDecoration: 'none',
-    fontSize: '1rem',
-    transition: 'color 0.2s, transform 0.2s'
-  },
-  navLinkHover: {
-    color: '#D1D5DB',
-    transform: 'scale(1.1)'
-  },
-  divider: {
-    color: '#6B7280',
-    margin: '0 0.5rem'
-  },
-  socialIcons: {
-    display: 'flex'
-  },
-  socialIcon: {
-    color: 'white',
-    padding: '0 0.75rem',
-    fontSize: '1.25rem',
-    transition: 'color 0.2s'
-  },
-  socialIconHover: {
-    color: '#D1D5DB'
-  }
-};
-
 const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
-    <nav style={styles.navbar}>
-      <div style={styles.container}>
+    <nav className="navbar">
+      <div className="navbar-container">
         {/* Logo */}
-        <div>
-          <img src={Logo} alt="Logo del sitio" style={styles.logo} />
+        <div className="navbar-logo">
+          <img src={Logo} alt="Magic Quest" />
         </div>
 
         {/* Enlaces de navegación */}
-        <div>
-          <div style={styles.navLinks}>
-            {navbarlinks.map((link, index) => (
-              <React.Fragment key={link.id}>
-                <a 
-                  href={link.link} 
-                  style={styles.navLink}
-                  onMouseOver={(e) => {
-                    e.target.style.color = '#D1D5DB';
-                    e.target.style.transform = 'scale(1.1)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.style.color = 'white';
-                    e.target.style.transform = 'scale(1)';
-                  }}
-                >
-                  {link.title}
-                </a>
-                {index < navbarlinks.length - 1 && (
-                  <span style={styles.divider}>|</span>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
+        <div className="navbar-menu">
+          {navbarlinks.map((link, index) => (
+            <React.Fragment key={link.id}>
+              <a href={link.link} className="navbar-link">
+                {link.title}
+              </a>
+              {index < navbarlinks.length - 1 && (
+                <span className="navbar-divider">|</span>
+              )}
+            </React.Fragment>
+          ))}
         </div>
 
         {/* Iconos de redes sociales */}
-        <div>
-          <div style={styles.socialIcons}>
-            {navbarRedes.map((link, index) => (
-              <React.Fragment key={link.id}>
-                <a 
-                  href={link.link} 
-                  style={styles.socialIcon}
-                  title={link.title}
-                  onMouseOver={(e) => e.target.style.color = '#D1D5DB'}
-                  onMouseOut={(e) => e.target.style.color = 'white'}
-                >
+        <div className="navbar-social">
+          {navbarRedes.map((link, index) => (
+            <React.Fragment key={link.id}>
+              <a href={link.link} className="social-icon" title={link.title}>
+                <i className={link.icon}></i>
+              </a>
+              {index < navbarRedes.length - 1 && (
+                <span className="navbar-divider">•</span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        {/* Botón menú móvil */}
+        <button className="mobile-menu-button" onClick={toggleMobileMenu}>
+          <i className={mobileMenuOpen ? "bi bi-x" : "bi bi-list"}></i>
+        </button>
+      </div>
+
+      {/* Menú móvil */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu">
+          <div className="mobile-menu-links">
+            {navbarlinks.map((link) => (
+              <a key={link.id} href={link.link} className="mobile-menu-link">
+                {link.title}
+              </a>
+            ))}
+            <div className="mobile-social">
+              {navbarRedes.map((link) => (
+                <a key={link.id} href={link.link} className="mobile-social-icon" title={link.title}>
                   <i className={link.icon}></i>
                 </a>
-                {index < navbarRedes.length - 1 && (
-                  <span style={styles.divider}>•</span>
-                )}
-              </React.Fragment>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }

@@ -1,0 +1,142 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 20px 0;
+  background-color: rgb(121, 19, 139);
+  opacity: 0.7;
+  margin-bottom: 500px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Logo */
+.navbar-logo img {
+  height: 50px;
+}
+
+/* Enlaces de navegación */
+.navbar-menu {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  padding: 0 15px;
+  font-size: 1.50rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.navbar-link:hover {
+  color: #d1d5db;
+  transform: scale(1.1);
+}
+
+.navbar-divider {
+  color: #6B7280;
+  padding: 0 5px;
+}
+
+/* Iconos de redes sociales */
+.navbar-social {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbar-social {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.social-icon {
+  color: white;
+  font-size: 1.50rem;
+  padding: 0 10px;
+  transition: color 0.3s;
+  
+}
+
+.social-icon:hover {
+  color: #d1d5db;
+  transform: scale(1.5);
+}
+
+/* Menú móvil */
+.mobile-menu-button {
+  display: block;
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-button {
+    display: none;
+  }
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(76, 29, 149, 0.95); /* Morado oscuro con transparencia */
+  padding: 20px;
+  z-index: 99;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mobile-menu-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 10px 0;
+  transition: color 0.3s;
+}
+
+.mobile-menu-link:hover {
+  color: #d1d5db;
+}
+
+.mobile-social {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mobile-social-icon {
+  color: white;
+  font-size: 1.25rem;
+  transition: color 0.3s;
+}
+
+.mobile-social-icon:hover {
+  color: #d1d5db;
+}

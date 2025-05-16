@@ -1,14 +1,14 @@
+import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 
 function App() {
   return (
-    <>
-    <Navbar/>
-    <Hero/>
-    </>
-    
-    
+    <div className="relative min-h-screen">
+      <Navbar />
+      <Hero />
+      {/* Aquí podrías añadir más secciones como Features, Testimonials, etc. */}
+    </div>
   );
 }
 
